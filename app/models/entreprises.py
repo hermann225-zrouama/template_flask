@@ -1,11 +1,14 @@
 # models.py
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
 Base = declarative_base()
 
 class Entreprise(Base):
     __tablename__ = 'entreprises'
+
+    __table_args__ = ({'schema': os.environ.get('SCHEMAS')})
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     Identifiant_unique = Column(String, nullable=True)
